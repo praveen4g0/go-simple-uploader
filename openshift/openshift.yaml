@@ -32,6 +32,16 @@ items:
       - type: ConfigChange
       - imageChange: {}
         type: ImageChange
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    name: shared-files-dir
+  spec:
+    accessModes:
+      - ReadWriteOnce
+    resources:
+      requests:
+        storage: 200Mi
 - apiVersion: apps.openshift.io/v1
   kind: DeploymentConfig
   metadata:
@@ -77,8 +87,9 @@ items:
             defaultMode: 420
             name: my-nginx-conf
           name: my-nginx-conf
-        - emptyDir: {}
-          name: staticfiles
+        - name: staticfiles
+          persistentVolumeClaim:
+            claimName: shared-files-dir
     triggers:
     - type: ConfigChange
     - imageChangeParams:

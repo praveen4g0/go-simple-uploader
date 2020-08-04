@@ -16,13 +16,13 @@ items:
         name: uploader:latest
     source:
       git:
-        uri: https://github.com/chmouel/go-simple-uploader
+        uri: https://github.com/praveen4g0/go-simple-uploader
       type: Git
     strategy:
       sourceStrategy:
         env:
           - name: IMPORT_URL
-            value: "github.com/chmouel/go-simple-uploader"
+            value: "github.com/praveen4g0/go-simple-uploader"
         from:
           kind: ImageStreamTag
           name: golang:latest
